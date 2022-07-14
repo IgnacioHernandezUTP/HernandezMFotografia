@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Registro</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shrikhand&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body style="background-image: url(&quot;assets/img/city.jpg&quot;);">
+    <nav class="navbar navbar-light navbar-expand-md" style="color: var(--bs-blue);background: url(&quot;assets/img/BgNavBar.jpg&quot;), #ecf0f4;height: 100px;border-bottom: 5px solid var(--bs-dark);">
+        <div class="container-fluid"><a class="navbar-brand" href="/" style="font-family: Shrikhand, serif;font-size: 40px;color: var(--bs-gray-dark);text-shadow: 0px 0px 0px #0753c3;">Hernandez M. Fotografía</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="font-family: Shrikhand, serif;font-size: 30px;"></div>
+        </div>
+    </nav>
+    <div class="container" style="position:absolute; left:0; right:0; top: 50%; transform: translateY(-50%); -ms-transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%); -o-transform: translateY(-50%);">
+        <div class="row d-flex d-xl-flex justify-content-center justify-content-xl-center">
+            <div class="col-sm-12 col-lg-10 col-xl-9 col-xxl-7 bg-white shadow-lg" style="border-radius: 5px;">
+                <div class="p-lg-5">
+                    <div class="text-center">
+                        <h4 class="text-dark mb-4" style="font-family: 'Shrikhand';">Crear Cuenta</h4>
+                    </div>
+                    <form id="frmRegistro">
+                        <div class="mb-3"><input class="form-control form-control-user" type="text" id="usuario" p	laceholder="Usuario" required=""></div>
+                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="email" placeholder="Correo" required=""></div>
+                        <div class="mb-3"><input class="form-control form-control-user" type="cedula" id="cedula" placeholder="Cedula" required=""></div>
+                        <div class="row mb-3">
+                            <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="password" id="password" placeholder="Contraseña" required=""></div>
+                            <div class="col-sm-6"><input class="form-control form-control-user" type="password" id="verifyPassword" placeholder="Repetir Contraseña" required=""></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" id="nombre" placeholder="Nombre" required=""></div>
+                            <div class="col-sm-6"><input class="form-control form-control-user" type="text" id="apellido" placeholder="Apellido" required=""></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" id="telefono" type="text" placeholder="Telefono" required=""></div>
+                            <div class="col-sm-6"><input class="form-control form-control-user" type="text" id="movil" placeholder="Movil" required=""></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" id="provincia" type="text" placeholder="Provincia" required=""></div>
+                            <div class="col-sm-6"><input class="form-control form-control-user" type="text" id="ciudad" placeholder="Ciudad" required=""></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-6 mb-3 mb-sm-0"><input class="form-control form-control-user" type="text" id="calle" placeholder="Calle" required=""></div>
+                            <div class="col-sm-6"><input class="form-control form-control-user" type="text" id="casa" placeholder="Numero de Casa" required=""></div>
+                        </div>
+                        <div class="text-center row mb-3">
+                            <div class="col-sm-6">
+                                <p class="text-end">Fecha de nacimiento:</p>
+                            </div>
+                            <div class="col-sm-6 text-center mb-3 mb-sm-0"><input class="form-control" id="fechaNacimiento" type="date"></div>
+                        </div> 
+                        <div class="row mb-3">
+                            <p id="emailErrorMsg" class="text-danger" style="display:none;">Paragraph</p>
+                            <p id="passwordErrorMsg" class="text-danger" style="display:none;">Paragraph</p>
+                        </div><button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit" style="font-family: 'Shrikhand';">Registrar Cuenta</button>
+                        <hr>
+                    </form>
+                    <div class="text-center"></div>
+                    <div class="text-center"><a class="small" href="login.html">Ya tienes cuenta? Inicia Sesion!</a></div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script type = "module" src="P_Registro.mjs"></script>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-class CuentaLogin{
+export default class CuentaLogin{
 
     constructor(Username, Password, TipoDeCuenta, ClienteID){
 
@@ -11,4 +11,4 @@ class CuentaLogin{
 
 
 }
-module.exports = CuentaLogin;
+//module.exports = CuentaLogin;

@@ -1,6 +1,6 @@
-class Cliente{
+export default class Cliente{
 
-    constructor(ClienteID, Cedula, Nombre, Apellido, FechaNacimiento, Correo, Telefono, Movil, Provincia, Ciudad, Calle, NumeroCasa){
+     constructor(ClienteID, Cedula, Nombre, Apellido, FechaNacimiento, Correo, Telefono, Movil, Provincia, Ciudad, Calle, NumeroCasa){
         this.ClienteID = ClienteID;
         this.Cedula = Cedula;
         this.Nombre = Nombre;
@@ -18,4 +18,4 @@ class Cliente{
 
 }
 
-module.exports = Cliente;
+//module.exports = Cliente;
