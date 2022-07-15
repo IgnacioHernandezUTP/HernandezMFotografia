@@ -28,9 +28,9 @@
                                     <div class="text-center">
                                         <h4 class="text-dark mb-4" style="font-family: Shrikhand, serif;">Bienvenido</h4>
                                     </div>
-                                    <form class="user">
-                                        <div class="mb-3"><input class="form-control form-control-user" type="email" id="email" aria-describedby="emailHelp" placeholder="Correo" name="email" required="" style="/*font-family: Shrikhand, serif;*/"></div>
-                                        <div class="mb-3"><input class="form-control form-control-user" type="password" placeholder="Contraseña" name="password" required="" style="/*font-family: Shrikhand, serif;*/"></div>
+                                    <form class="user" id="frmInicioSesion">
+                                        <div class="mb-3"><input class="form-control form-control-user" type="text" id="username" placeholder="Usuario" name="user" required="" style="/*font-family: Shrikhand, serif;*/"></div>
+                                        <div class="mb-3"><input class="form-control form-control-user" id="password" type="password" placeholder="Contraseña" name="password" required="" style="/*font-family: Shrikhand, serif;*/"></div>
                                         <div class="row mb-3">
                                             <p id="errorMsg" class="text-danger" style="display:none;">Paragraph</p>
                                         </div><button class="btn btn-primary d-block btn-user w-100" id="submitBtn" type="submit" style="font-family: Shrikhand, serif;">Login</button>
@@ -47,7 +47,7 @@
         </div>
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="InicioSesion.js"></script>
+    <script type = "module" src="P_Inicio_Sesion.mjs"></script>
 </body>
 
 </html>

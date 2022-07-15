@@ -69,7 +69,7 @@ frmRegistro.addEventListener("submit", (e) => {
     
     
     console.log(nuevoCliente);
-
+    document.location.href = "/InicioSesion";
 
 
     

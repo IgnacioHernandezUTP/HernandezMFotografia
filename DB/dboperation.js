@@ -15,8 +15,21 @@ async function getCliente() {
 
 async function getClienteByCedula(cedula) {
     try {
+        console.log(cedula);
         let pool = await sql.connect(config);
         let clientes = await pool.request().input('input_parameter',sql.VarChar,cedula).query("SELECT * from Cliente where cedula = @input_parameter");
+        return clientes.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getCuentaByUser(user) {
+    try {
+        console.log(user);
+        let pool = await sql.connect(config);
+        let clientes = await pool.request().input('input_parameter',sql.VarChar,user).query("SELECT * from CuentaLogin where Username = @input_parameter");
         return clientes.recordsets;
     }
     catch (error) {
@@ -77,5 +90,6 @@ module.exports = {
     getCliente: getCliente,
     getClienteByCedula:getClienteByCedula,
     RegistrarCliente:RegistrarCliente,
-    RegistrarCuenta:RegistrarCuenta
+    RegistrarCuenta:RegistrarCuenta,
+    getCuentaByUser:getCuentaByUser
 }
