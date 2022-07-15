@@ -2,7 +2,7 @@ import Cliente from '../../Entidades/E_Cliente/Cliente.js';
 import Cuenta from '../../Entidades/E_Cuenta_Login/CuentaLogin.js';
 import { RegistrarCliente } from '../../Controladores/C_Iniciar_Sesion/C_Iniciar_Sesion.js';
 import { RegistrarCuenta } from '../../Controladores/C_Iniciar_Sesion/C_Iniciar_Sesion.js';
-import { ObtenerClientePorCedula } from '../../Controladores/C_Iniciar_Sesion/C_Iniciar_Sesion.js';
+import { ObtenerClientes } from '../../Controladores/C_Iniciar_Sesion/C_Iniciar_Sesion.js';
 
 let email = document.getElementById("email");
 let password = document.getElementById("password");
@@ -29,33 +29,51 @@ frmRegistro.addEventListener("submit", (e) => {
 
     e.preventDefault();
 
-    console.log("dsaf"); 
-    const nuevoCliente = new Cliente();
-    const nuevaCuenta = new Cuenta();
-
-    nuevoCliente.Cedula = cedula.textContent;
-    nuevoCliente.Nombre = nombre.textContent;
-    nuevoCliente.Apellido = apellido.textContent;
-    nuevoCliente.Email = email.textContent;
-    nuevoCliente.Telefono = telefono.textContent;
-    nuevoCliente.Movil = movil.textContent;
-    nuevoCliente.Provincia = provincia.textContent;
-    nuevoCliente.Ciudad = ciudad.textContent;
-    nuevoCliente.Calle = calle.textContent;
-    nuevoCliente.NumeroCasa = numeroCasa.textContent;
-    nuevoCliente.FechaNacimiento = fechaNacimiento.textContent;
     
+    var nuevoCliente = new Cliente();
+    var nuevaCuenta = new Cuenta();
 
-    RegistrarCliente(nuevoCliente);
+    nuevoCliente.Cedula = cedula.value;
+    nuevoCliente.Nombre = nombre.value;
+    nuevoCliente.Apellido = apellido.value;
+    nuevoCliente.Correo = email.value;
+    nuevoCliente.Telefono = telefono.value;
+    nuevoCliente.Movil = movil.value;
+    nuevoCliente.Provincia = provincia.value;
+    nuevoCliente.Ciudad = ciudad.value;
+    nuevoCliente.Calle = calle.value;
+    nuevoCliente.NumeroCasa = numeroCasa.value;
+    nuevoCliente.FechaNacimiento = fechaNacimiento.value;
     
-    //nuevoCliente = ObtenerClientePorCedula(nuevoCliente.Cedula);
+    console.log(nuevoCliente);
+    var ClienteID = RegistrarCliente(nuevoCliente);
+    console.log(ClienteID);
+   // xClien.then(function(result){
+   //    console.log(result);
+    //});
 
-    nuevaCuenta.Username = usuario;
-    nuevaCuenta.Password = password;
-    nuevaCuenta.TipoDeCuenta = "Cliente";
-    nuevaCuenta.ClienteID = nuevoCliente.ClienteID;
+   
+        // Save it!
+        var cedCliente = ObtenerClientes();
+        cedCliente.then(function(result){
+        console.log(result);
+        nuevaCuenta.Username = usuario.value;
+        nuevaCuenta.Password = password.value;
+        nuevaCuenta.TipoDeCuenta = "Cliente";
+        nuevaCuenta.ClienteID = result[result.length-1].ClienteID;
+        console.log(nuevaCuenta);
+        RegistrarCuenta(nuevaCuenta);
+    });
+        
 
-    RegistrarCuenta(nuevaCuenta)
+    
+    
+    console.log(nuevoCliente);
+
+
+
+    
+    
 
 }); 
 

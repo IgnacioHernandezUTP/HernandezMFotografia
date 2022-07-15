@@ -25,6 +25,14 @@ app.get("/Clientes", function(req, res){
     
     
 });
+app.get("/ClientePorCedula/id:", function(req, res){
+    
+    dboperations.getClienteByCedula(req.params.id).then(result => {
+        res.json(result);
+     })
+    
+    
+});
 
 app.get("/MenuPrincipal", function(req, res){
     
@@ -51,6 +59,30 @@ app.get("/Registrar", function(req, res){
      })
     
     res.sendFile(path.resolve(__dirname + "/Pantallas/P_Registro/P_Registro.html"));
+});
+
+app.use(bodyParser.text({ type: "text/plain" }));
+
+app.post("/RegistrarCliente",  function(req, res){
+
+    var obj = req.body;
+    var objJson = JSON.parse(obj);
+    dboperations.RegistrarCliente(objJson).then(result => {
+        console.log("resultado de sp = " + result.resultado);
+        res.json(result);
+     })
+
+});
+
+app.post("/RegistrarCuenta",  function(req, res){
+
+    var obj = req.body;
+    var objJson = JSON.parse(obj);
+    dboperations.RegistrarCuenta(objJson).then(result => {
+        //console.log("resultado de sp = " + result.resultado);
+        res.json(result);
+     })
+
 });
 
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Inicio")));
