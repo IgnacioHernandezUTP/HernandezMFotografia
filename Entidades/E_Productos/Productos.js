@@ -1,4 +1,4 @@
-class Producto{
+export default class Producto{
     constructor(ProductoID, Nombre, Precio, Descripcion, Categoria, Fotografia){
         this.ProductoID = ProductoID;
         this.Nombre = Nombre;
@@ -8,4 +8,4 @@ class Producto{
         this.Fotografia = Fotografia;
     }
 }
-module.exports = Producto;
+//module.exports = Producto;

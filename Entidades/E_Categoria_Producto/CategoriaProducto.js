@@ -1,4 +1,4 @@
-class CategoriaProducto{
+export default class CategoriaProducto{
 
     constructor(CategoriaIDP, Nombre){
         this.CategoriaIDP = CategoriaIDP;
@@ -7,4 +7,4 @@ class CategoriaProducto{
 
 
 }
-module.exports = CategoriaProducto;
+//module.exports = CategoriaProducto;

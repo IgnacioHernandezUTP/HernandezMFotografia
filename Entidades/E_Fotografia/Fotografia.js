@@ -1,4 +1,4 @@
-class Fotografia{
+export default class Fotografia{
 
     constructor(FotografiaID, Categoria, Url, Titulo, Descripcion){
 
@@ -11,4 +11,4 @@ class Fotografia{
 
 
 }
-module.exports = Fotografia;
+//module.exports = Fotografia;

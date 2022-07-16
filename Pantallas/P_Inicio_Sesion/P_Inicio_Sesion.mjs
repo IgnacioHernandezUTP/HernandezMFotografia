@@ -22,7 +22,7 @@ frmInicioSesion.addEventListener("submit", (e) => {
         if (result[0].Password == nuevaCuenta.Password){
             switch(result[0].TipoDeCuenta) {
                 case "Cliente":
-                    console.log("enterde Cliente");
+                    localStorage.setItem('usuario', nuevaCuenta.Username);
                     document.location.href = "/MenuPrincipal";
                     break;
                 case "Gerente":

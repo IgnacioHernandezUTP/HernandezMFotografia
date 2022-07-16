@@ -1,4 +1,4 @@
-class VentaProducto{
+export default class VentaProducto{
 
     constructor(VentaID, ProductoID, Cantidad){
 
@@ -10,4 +10,4 @@ class VentaProducto{
 
 }
 
-module.exports = VentaProducto;
+//module.exports = VentaProducto;

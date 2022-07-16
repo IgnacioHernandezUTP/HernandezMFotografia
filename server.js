@@ -69,13 +69,58 @@ app.get("/InicioSesion", function(req, res){
 
 app.get("/Registrar", function(req, res){
     
-    dboperations.getCliente().then(result => {
-        console.log(result);
-     })
-    
+
     res.sendFile(path.resolve(__dirname + "/Pantallas/P_Registro/P_Registro.html"));
 });
 
+app.get("/Productos", function(req, res){
+    
+
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Productos/P_Productos.html"));
+});
+
+app.get("/ObtenerProductos", function(req, res){
+    
+    dboperations.getProductos().then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+app.get("/ProductoPorId", function(req, res){
+    
+    dboperations.getProductByID(req.query.id).then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+app.get("/FotografiaPorId", function(req, res){
+    
+    dboperations.getFotoByID(req.query.id).then(result => {
+
+        res.json(result);
+     })
+    
+    
+});
+
+app.get("/CategoriaProdPorId", function(req, res){
+    
+    dboperations.getCategoriaProdByID(req.query.id).then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+
+//Funciones
 app.use(bodyParser.text({ type: "text/plain" }));
 
 app.post("/RegistrarCliente",  function(req, res){
@@ -100,12 +145,14 @@ app.post("/RegistrarCuenta",  function(req, res){
 
 });
 
+//rutas estaticas
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Inicio")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Registro")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Menu_Principal")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Menu_Marketing")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Menu_Gerente")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Inicio_Sesion")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Productos")));
 app.use("/", express.static(__dirname));
 
 app.listen(3000, function(){

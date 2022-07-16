@@ -1,4 +1,4 @@
-class PedidoProducto{
+export default class PedidoProducto{
 
     constructor(NumeroDeOrden, NumeroDeTarjeta, CodigoDeSeguridad, FechaExpiracion, TipoEntrega, Ubicacion, Total, Venta, Cliente){
 
@@ -15,4 +15,4 @@ class PedidoProducto{
 
 
 }
-module.exports = PedidoProducto;
+//module.exports = PedidoProducto;

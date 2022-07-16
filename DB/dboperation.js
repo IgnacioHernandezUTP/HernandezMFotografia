@@ -13,12 +13,59 @@ async function getCliente() {
     }
 }
 
+async function getProductos() {
+    try {
+        let pool = await sql.connect(config);
+        let products = await pool.request().query("SELECT * from Producto");
+        return products.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
 async function getClienteByCedula(cedula) {
     try {
         console.log(cedula);
         let pool = await sql.connect(config);
         let clientes = await pool.request().input('input_parameter',sql.VarChar,cedula).query("SELECT * from Cliente where cedula = @input_parameter");
         return clientes.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getFotoByID(id) {
+    try {
+
+        let pool = await sql.connect(config);
+        let foto = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from Fotografia where FotografiaID = @input_parameter");
+        return foto.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getCategoriaProdByID(id) {
+    try {
+        console.log(id);
+        let pool = await sql.connect(config);
+        let cat = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from CategoriaProducto where CategoriaIDP = @input_parameter");
+        return cat.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getProductByID(id) {
+    try {
+        console.log(id);
+        let pool = await sql.connect(config);
+        let prod = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from Producto where ProductoID = @input_parameter");
+        return prod.recordsets;
     }
     catch (error) {
         console.log(error);
@@ -91,5 +138,9 @@ module.exports = {
     getClienteByCedula:getClienteByCedula,
     RegistrarCliente:RegistrarCliente,
     RegistrarCuenta:RegistrarCuenta,
-    getCuentaByUser:getCuentaByUser
+    getCuentaByUser:getCuentaByUser,
+    getProductos:getProductos,
+    getFotoByID:getFotoByID,
+    getCategoriaProdByID:getCategoriaProdByID,
+    getProductByID:getProductByID
 }
