@@ -1,4 +1,4 @@
-class CategoriaServicio{
+export default class CategoriaServicio{
 
     constructor(CategoriaIDS, Nombre){
         this.CategoriaIDS = CategoriaIDS;
@@ -7,4 +7,4 @@ class CategoriaServicio{
 
 
 }
-module.exports = CategoriaServicio;
+//module.exports = CategoriaServicio;

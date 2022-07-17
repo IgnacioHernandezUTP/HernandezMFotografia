@@ -8,7 +8,7 @@ let btnRegistrar = document.getElementById("btnRegistrar");
 
 let totalDisplay = document.getElementById("total");
 
-totalDisplay.innerText = total;
+totalDisplay.innerText = total + "$";
 
 btnRegistrar.addEventListener("click", Registrar);
 

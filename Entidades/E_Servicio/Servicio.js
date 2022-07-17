@@ -1,4 +1,4 @@
-class Servicio{
+export default class Servicio{
 
 
     constructor(ServicioID, Nombre, Precio, Descripcion, Categoria, Fotografia){
@@ -11,4 +11,4 @@ class Servicio{
     }
 
 }
-module.exports = Servicio;
+//module.exports = Servicio;

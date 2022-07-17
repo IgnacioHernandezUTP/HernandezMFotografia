@@ -5,8 +5,8 @@ const sql = require('mssql');
 async function getCliente() {
     try {
         let pool = await sql.connect(config);
-        let products = await pool.request().query("SELECT * from Cliente");
-        return products.recordsets;
+        let clientes = await pool.request().query("SELECT * from Cliente");
+        return clientes.recordsets;
     }
     catch (error) {
         console.log(error);
@@ -24,12 +24,94 @@ async function getProductos() {
     }
 }
 
+async function getFotos() {
+    try {
+        let pool = await sql.connect(config);
+        let fotos = await pool.request().query("SELECT * from Fotografia");
+        return fotos.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getCategoriaFotoByID(id) {
+    try {
+        console.log(id);
+        let pool = await sql.connect(config);
+        let catFoto = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from CategoriaFoto where CategoriaIDF = @input_parameter");
+        return catFoto.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getServicios() {
+    try {
+        let pool = await sql.connect(config);
+        let servicios = await pool.request().query("SELECT * from Servicio");
+        return servicios.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getServicioByID(id) {
+    try {
+        console.log(id);
+        let pool = await sql.connect(config);
+        let servicio = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from Servicio where ServicioID = @input_parameter");
+        return servicio.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getCategoriaServByID(id) {
+    try {
+        console.log(id);
+        let pool = await sql.connect(config);
+        let catServ = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from CategoriaServicio where CategoriaIDS = @input_parameter");
+        return catServ.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function RegistrarPedidoServicio(obj) {
+
+    try {
+        let pool = await sql.connect(config);
+        let PedidoServicio = await pool.request()
+            .input('NumeroDeOrden', sql.VarChar, obj.NumeroDeOrden)
+            .input('NumeroDeTarjeta', sql.VarChar, obj.NumeroDeTarjeta)
+            .input('CodigoDeSeguridad', sql.VarChar, obj.CodigoDeSeguridad)
+            .input('FechaExpiracion', sql.VarChar, obj.FechaExpiracion)
+            .input('Lugar', sql.VarChar, obj.Lugar)
+            .input('Total', sql.Decimal, obj.Total)
+            .input('Servicio', sql.Int, obj.Servicio)
+            .input('Cliente', sql.Int, obj.Cliente)
+            .input('Horario', sql.VarChar, obj.Horario)
+            .output('resultado', sql.Int, 0)
+            .execute('registrarPedidoServicio');
+        return PedidoServicio.output;
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
+
 async function getClienteByCedula(cedula) {
     try {
         console.log(cedula);
         let pool = await sql.connect(config);
-        let clientes = await pool.request().input('input_parameter',sql.VarChar,cedula).query("SELECT * from Cliente where cedula = @input_parameter");
-        return clientes.recordsets;
+        let cliente = await pool.request().input('input_parameter',sql.VarChar,cedula).query("SELECT * from Cliente where cedula = @input_parameter");
+        return cliente.recordsets;
     }
     catch (error) {
         console.log(error);
@@ -52,8 +134,8 @@ async function getCategoriaProdByID(id) {
     try {
         console.log(id);
         let pool = await sql.connect(config);
-        let cat = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from CategoriaProducto where CategoriaIDP = @input_parameter");
-        return cat.recordsets;
+        let catProd = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from CategoriaProducto where CategoriaIDP = @input_parameter");
+        return catProd.recordsets;
     }
     catch (error) {
         console.log(error);
@@ -88,8 +170,8 @@ async function getCuentaByUser(user) {
     try {
         console.log(user);
         let pool = await sql.connect(config);
-        let clientes = await pool.request().input('input_parameter',sql.VarChar,user).query("SELECT * from CuentaLogin where Username = @input_parameter");
-        return clientes.recordsets;
+        let cuenta = await pool.request().input('input_parameter',sql.VarChar,user).query("SELECT * from CuentaLogin where Username = @input_parameter");
+        return cuenta.recordsets;
     }
     catch (error) {
         console.log(error);
@@ -198,5 +280,11 @@ module.exports = {
     getProductByID:getProductByID,
     RegistrarPedidoProducto:RegistrarPedidoProducto,
     RegistrarVentaProducto:RegistrarVentaProducto,
-    getPedidoByVentaID:getPedidoByVentaID
+    getPedidoByVentaID:getPedidoByVentaID,
+    getServicios:getServicios,
+    getServicioByID:getServicioByID,
+    getCategoriaServByID:getCategoriaServByID,
+    RegistrarPedidoServicio:RegistrarPedidoServicio,
+    getFotos:getFotos,
+    getCategoriaFotoByID:getCategoriaFotoByID
 }

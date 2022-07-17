@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>P_Productos</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/Roboto.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shrikhand&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/Pretty-Registration-Form-.css">
+    <link rel="stylesheet" href="assets/css/Responsive-Form-Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Responsive-Form.css">
+    <link rel="stylesheet" href="assets/css/Shopping-Grid.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body style="/*background-image: url(&quot;assets/img/Casco_n_4076_20210923.jpg&quot;);*/">
+    <nav class="navbar navbar-light navbar-expand-md" style="color: var(--bs-blue);background: url(&quot;assets/img/BgNavBar.jpg&quot;), #ecf0f4;height: 100px;border-bottom: 5px solid var(--bs-dark);">
+        <div class="container-fluid"><a class="navbar-brand" href="#" style="font-family: Shrikhand, serif;font-size: 40px;color: var(--bs-gray-dark);text-shadow: 0px 0px 0px #0753c3;">Hernandez M. Fotografía</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1" style="font-family: Shrikhand, serif;font-size: 30px;">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Galeria</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row register-form">
+        <div class="col-md-8 offset-md-2">
+            <form class="custom-form">
+                <h1>Información De Pedido</h1>
+                <div class="row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Nombre</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" id="nombre" type="text"></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="email-input-field">Correo</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" id="correo" type="email"></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Fecha</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" id="fecha" type="date"></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Hora</label></div>
+                    <div class="col-sm-6 input-column"><input type="time" id="hora" name="appt"></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Teléfono</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" id="telefono" type="text"></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Tipo de Sesión&nbsp;</label></div>
+                    <div class="col-sm-6 input-column">
+
+                        <input type="radio" id="rbtnEstudio" name="entrega" value="Sucursal">
+                        <label for="html">Estudio</label><br>
+                        <input type="radio" id="rbtnExterior" name="entrega" value="Delivery">
+                        <label for="css">Aire Libre</label><br>
+                        
+                    </div>
+                </div>
+
+
+                <div class="row form-group" id="divProvincia">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Provincia</label></div>
+                    <div class="col-sm-6 input-column">
+                        <select class="form-select" name="provincias" id="provincia">
+                            <option value="Panama">Panama</option>
+                            <option value="Panama Oeste">Panama Oeste</option>
+                            <option value="Colon">Colon</option>
+                            <option value="Cocle">Cocle</option>
+                            <option value="Darien">Darien</option>
+                            <option value="Herrera">Herrera</option>
+                            <option value="Los Santos">Los Santos</option>
+                            <option value="Veraguas">Veraguas</option>
+                            <option value="Bocas Del Toro">Bocas Del Toro</option>
+                            <option value="Chiriqui">Chiriqui</option>
+                          </select>
+                    </div>
+                </div>
+                <div class="row form-group" id="divCiudad">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Ciudad</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" id="ciudad" type="text"></div>
+                </div>
+                <div class="row form-group" id="divCalle">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Calle</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" id="calle" type="text"></div>
+                </div>
+                <div class="row form-group" id="divNumeroCasa">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="name-input-field">Numero de Casa/Apt</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" id="numeroCasa" type="text"></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="pawssword-input-field">Numero de Tarjeta</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" id="numeroTarjeta" type="text"></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="pawssword-input-field">Fecha expiración</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" id="fechaExpiracion" type="text"></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-4 label-column"><label class="col-form-label" for="pawssword-input-field">Código de Seguridad</label></div>
+                    <div class="col-sm-6 input-column"><input class="form-control" id="codigoSeguridad" type="text"></div>
+                </div>
+                
+                
+                <div class="row form-group">
+                    
+                </div><button class="btn btn-light submit-button" id="Continuar" type="button">Continuar</button>
+            </form>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script type="module" src="P_Recop_Datos_Servicios.mjs"></script>
+</body>
+
+</html>

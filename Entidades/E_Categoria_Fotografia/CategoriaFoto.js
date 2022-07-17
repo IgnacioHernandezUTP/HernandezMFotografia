@@ -1,4 +1,4 @@
-class CategoriaFoto{
+export default class CategoriaFoto{
 
     constructor(CategoriaIDF, Nombre){
         this.CategoriaIDF = CategoriaIDF;
@@ -7,4 +7,4 @@ class CategoriaFoto{
 
 
 }
-module.exports = CategoriaFoto;
+//module.exports = CategoriaFoto;

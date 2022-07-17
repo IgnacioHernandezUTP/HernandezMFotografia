@@ -7,7 +7,7 @@ const path = require('path');
 const bodyParser = require("body-parser")
 
 app.use(bodyParser.urlencoded({extended: true}));
-
+app.use(bodyParser.text({ type: "text/plain" }));
 app.get("/", function(req, res){
     
     dboperations.getCliente().then(result => {
@@ -79,10 +79,22 @@ app.get("/RecopDatosProd", function(req, res){
     res.sendFile(path.resolve(__dirname + "/Pantallas/P_Recop_Datos_Prod/P_Recop_Datos_Prod.html"));
 });
 
+app.get("/RecopDatosServ", function(req, res){
+    
+
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Recop_Datos_Servicios/P_Recop_Datos_Servicios.html"));
+});
+
 app.get("/TotalProd", function(req, res){
     
 
     res.sendFile(path.resolve(__dirname + "/Pantallas/P_Total_A_Pagar_Prod/P_Total_A_Pagar_Prod.html"));
+});
+
+app.get("/TotalServ", function(req, res){
+    
+
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Total_A_Pagar_Serv/P_Total_A_Pagar_Serv.html"));
 });
 
 app.get("/Confirmacion", function(req, res){
@@ -91,15 +103,84 @@ app.get("/Confirmacion", function(req, res){
     res.sendFile(path.resolve(__dirname + "/Pantallas/P_Confirmar_Pedido_Prod/P_Confirmar_Pedido_Prod.html"));
 });
 
+app.get("/ConfirmacionServ", function(req, res){
+    
+
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Confirmar_Pedido_Serv/P_Confirmar_Pedido_Serv.html"));
+});
+
 app.get("/Productos", function(req, res){
     
 
     res.sendFile(path.resolve(__dirname + "/Pantallas/P_Productos/P_Productos.html"));
 });
 
+app.get("/Servicios", function(req, res){
+    
+
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Servicios/P_Servicios.html"));
+});
+
+app.get("/Galeria", function(req, res){
+    
+
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Galeria/P_Galeria.html"));
+});
+
+app.get("/ObtenerServicios", function(req, res){
+    
+    dboperations.getServicios().then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+app.get("/ServicioPorId", function(req, res){
+    
+    dboperations.getServicioByID(req.query.id).then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+app.get("/CategoriaServPorId", function(req, res){
+    
+    dboperations.getCategoriaServByID(req.query.id).then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+app.post("/RegistrarPedidoServicio",  function(req, res){
+
+    var obj = req.body;
+    var objJson = JSON.parse(obj);
+    dboperations.RegistrarPedidoServicio(objJson).then(result => {
+    
+       res.json(result);
+    })
+
+});
+
 app.get("/ObtenerProductos", function(req, res){
     
     dboperations.getProductos().then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+app.get("/ObtenerFotos", function(req, res){
+    
+    dboperations.getFotos().then(result => {
         
         res.json(result);
      })
@@ -147,9 +228,19 @@ app.get("/CategoriaProdPorId", function(req, res){
     
 });
 
+app.get("/CategoriaFotoPorId", function(req, res){
+    
+    dboperations.getCategoriaFotoByID(req.query.id).then(result => {
+        console.log(result);
+        res.json(result);
+     })
+    
+    
+});
+
 
 //Funciones
-app.use(bodyParser.text({ type: "text/plain" }));
+
 
 app.post("/RegistrarCliente",  function(req, res){
 
@@ -206,6 +297,13 @@ app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Productos")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Recop_Datos_Prod")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Total_A_Pagar_Prod")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Confirmar_Pedido_Prod")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Servicios")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Recop_Datos_Servicios")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Total_A_Pagar_Serv")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Confirmar_Pedido_Serv")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Galeria")));
+
+
 
 app.use("/", express.static(__dirname));
 
