@@ -10,7 +10,7 @@ GO
 -- Create date: 05/06/2022
 -- Description:	Procedimiento para el registro de Cuentas
 -- =============================================
-CREATE PROCEDURE [dbo].[registrarCuenta](
+Create PROCEDURE [dbo].[registrarCuenta](
 	  @ClienteID as INT
 	 ,@Password as VARCHAR(100)
 	 ,@Username as VARCHAR(50)

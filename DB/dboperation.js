@@ -72,6 +72,18 @@ async function getProductByID(id) {
     }
 }
 
+async function getPedidoByVentaID(id) {
+    try {
+        console.log(id);
+        let pool = await sql.connect(config);
+        let prod = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from PedidoProducto where Venta = @input_parameter");
+        return prod.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
 async function getCuentaByUser(user) {
     try {
         console.log(user);
@@ -111,6 +123,29 @@ async function RegistrarCliente(obj) {
 
 }
 
+async function RegistrarPedidoProducto(obj) {
+
+    try {
+        let pool = await sql.connect(config);
+        let PedidoProducto = await pool.request()
+            .input('NumeroDeTarjeta', sql.VarChar, obj.NumeroDeTarjeta)
+            .input('CodigoDeSeguridad', sql.VarChar, obj.CodigoDeSeguridad)
+            .input('FechaExpiracion', sql.VarChar, obj.FechaExpiracion)
+            .input('TipoEntrega', sql.VarChar, obj.TipoEntrega)
+            .input('Ubicacion', sql.VarChar, obj.Ubicacion)
+            .input('Total', sql.Decimal, obj.Total)
+            .input('Venta', sql.Int, obj.Venta)
+            .input('Cliente', sql.Int, obj.Cliente)
+            .output('resultado', sql.Int, 0)
+            .execute('registrarPedidoProducto');
+        return PedidoProducto.output;
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
+
 async function RegistrarCuenta(obj) {
     console.log("obj pasado a dboperations Cuenta = " + obj);
     try {
@@ -130,6 +165,24 @@ async function RegistrarCuenta(obj) {
 
 }
 
+async function RegistrarVentaProducto(obj) {
+    console.log("obj pasado a dboperations Cuenta = " + obj);
+    try {
+        let pool = await sql.connect(config);
+        let registrarVentaProducto = await pool.request()
+            .input('VentaID', sql.Int, obj.VentaID)
+            .input('ProductoID', sql.Int, obj.ProductoID)
+            .input('Cantidad', sql.Int, obj.Cantidad)
+            .output('resultado', sql.Int, 0)
+            .execute('registrarVentaProducto');
+        return registrarVentaProducto.output;
+    }
+    catch (err) {
+        console.log(err);
+    }
+
+}
+
 var result = getCliente();
 console.log(result);
 
@@ -142,5 +195,8 @@ module.exports = {
     getProductos:getProductos,
     getFotoByID:getFotoByID,
     getCategoriaProdByID:getCategoriaProdByID,
-    getProductByID:getProductByID
+    getProductByID:getProductByID,
+    RegistrarPedidoProducto:RegistrarPedidoProducto,
+    RegistrarVentaProducto:RegistrarVentaProducto,
+    getPedidoByVentaID:getPedidoByVentaID
 }

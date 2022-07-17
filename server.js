@@ -73,6 +73,24 @@ app.get("/Registrar", function(req, res){
     res.sendFile(path.resolve(__dirname + "/Pantallas/P_Registro/P_Registro.html"));
 });
 
+app.get("/RecopDatosProd", function(req, res){
+    
+
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Recop_Datos_Prod/P_Recop_Datos_Prod.html"));
+});
+
+app.get("/TotalProd", function(req, res){
+    
+
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Total_A_Pagar_Prod/P_Total_A_Pagar_Prod.html"));
+});
+
+app.get("/Confirmacion", function(req, res){
+    
+
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Confirmar_Pedido_Prod/P_Confirmar_Pedido_Prod.html"));
+});
+
 app.get("/Productos", function(req, res){
     
 
@@ -92,6 +110,16 @@ app.get("/ObtenerProductos", function(req, res){
 app.get("/ProductoPorId", function(req, res){
     
     dboperations.getProductByID(req.query.id).then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+app.get("/PedidoPorVentaId", function(req, res){
+    
+    dboperations.getPedidoByVentaID(req.query.id).then(result => {
         
         res.json(result);
      })
@@ -145,6 +173,28 @@ app.post("/RegistrarCuenta",  function(req, res){
 
 });
 
+app.post("/RegistrarPedidoProducto",  function(req, res){
+
+    var obj = req.body;
+    var objJson = JSON.parse(obj);
+    dboperations.RegistrarPedidoProducto(objJson).then(result => {
+        //console.log("resultado de sp = " + result.resultado);
+        res.json(result);
+     })
+
+});
+
+app.post("/RegistrarVentaProducto",  function(req, res){
+
+    var obj = req.body;
+    var objJson = JSON.parse(obj);
+    dboperations.RegistrarVentaProducto(objJson).then(result => {
+        //console.log("resultado de sp = " + result.resultado);
+        res.json(result);
+     })
+
+});
+
 //rutas estaticas
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Inicio")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Registro")));
@@ -153,6 +203,10 @@ app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Menu_Marketing")))
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Menu_Gerente")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Inicio_Sesion")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Productos")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Recop_Datos_Prod")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Total_A_Pagar_Prod")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Confirmar_Pedido_Prod")));
+
 app.use("/", express.static(__dirname));
 
 app.listen(3000, function(){

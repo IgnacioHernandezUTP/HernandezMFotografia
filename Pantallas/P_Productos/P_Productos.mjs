@@ -105,6 +105,8 @@ function addElement(appendIn, value){
     function RegistrarVenta(venta){
 
         var id = Math.floor(Math.random() * 100000);
+    
+        var total = 0;
 
         venta.forEach(function (prod) {
 
@@ -113,6 +115,8 @@ function addElement(appendIn, value){
             ventaProducto.ProductoID = prod.ProductoID;
             ventaProducto.VentaID = id;
             ventaProducto.Cantidad = 1;
+
+            total = total + prod.Precio;
 
             if (ventaFinal.length > 0){
 
@@ -132,8 +136,10 @@ function addElement(appendIn, value){
             console.log(ventaFinal);
         });
 
-        localStorage.setItem('ventaProductos', ventaFinal);
-
+        localStorage.setItem('ventaProductos', JSON.stringify(ventaFinal));
+        localStorage.setItem('ventaID', id);
+        localStorage.setItem('totalVentaProd', total);
+        document.location.href = "/RecopDatosProd";
     }
 
     document.addEventListener("DOMContentLoaded", function(e) {
