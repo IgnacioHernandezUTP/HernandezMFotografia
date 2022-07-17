@@ -127,6 +127,14 @@ app.get("/Galeria", function(req, res){
     res.sendFile(path.resolve(__dirname + "/Pantallas/P_Galeria/P_Galeria.html"));
 });
 
+app.get("/VerPedidos", function(req, res){
+    
+
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Ver_Pedidos/P_Ver_Pedidos.html"));
+});
+
+
+
 app.get("/ObtenerServicios", function(req, res){
     
     dboperations.getServicios().then(result => {
@@ -137,9 +145,49 @@ app.get("/ObtenerServicios", function(req, res){
     
 });
 
+app.get("/ObtenerPedidosProducto", function(req, res){
+    
+    dboperations.getPedidosProducto().then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+app.get("/ObtenerPedidosServicio", function(req, res){
+    
+    dboperations.getPedidosServicio().then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
 app.get("/ServicioPorId", function(req, res){
     
     dboperations.getServicioByID(req.query.id).then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+app.get("/ClientePorId", function(req, res){
+    
+    dboperations.getClienteByID(req.query.id).then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+app.get("/VentaPorId", function(req, res){
+    
+    dboperations.getVentaByID(req.query.id).then(result => {
         
         res.json(result);
      })
@@ -197,6 +245,18 @@ app.get("/ProductoPorId", function(req, res){
     
     
 });
+
+app.get("/ObtenerDescripcion", function(req, res){
+    
+    dboperations.getDescripcionByVentaID(req.query.id).then(result => {
+        
+        res.json(result);
+     })
+    
+    
+});
+
+
 
 app.get("/PedidoPorVentaId", function(req, res){
     
@@ -302,6 +362,9 @@ app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Recop_Datos_Servic
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Total_A_Pagar_Serv")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Confirmar_Pedido_Serv")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Galeria")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Ver_Pedidos")));
+
+
 
 
 

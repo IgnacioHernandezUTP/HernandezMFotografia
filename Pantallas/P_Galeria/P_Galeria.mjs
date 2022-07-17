@@ -78,7 +78,7 @@ function addElement(appendIn, value){
         div.innerHTML = `
             <img src="${elemento.Url}" class="bg-cover img mx-auto" alt="img1">
             <div class="text-center py-3 font-poppins">
-                <h1 class="text-lg title">${elemento.Titulo}</h1>
+                <h1 class="text-xlg title">${elemento.Titulo}</h1>
                 <a href="#" class="block"><span class="text-sm text-red-400">${catFoto.Nombre}</span></a>
                 <span class="block py-3"><span class="text-md">${elemento.Descripcion}</span></span>
             </div>

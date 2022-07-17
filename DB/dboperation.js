@@ -13,6 +13,30 @@ async function getCliente() {
     }
 }
 
+async function getClienteByID(id) {
+    try {
+        console.log(id);
+        let pool = await sql.connect(config);
+        let clienteid = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from Cliente where ClienteID = @input_parameter");
+        return clienteid.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getVentaByID(id) {
+    try {
+        console.log(id);
+        let pool = await sql.connect(config);
+        let ventaID = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from VentaProducto where VentaID = @input_parameter");
+        return ventaID.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
 async function getProductos() {
     try {
         let pool = await sql.connect(config);
@@ -52,6 +76,28 @@ async function getServicios() {
         let pool = await sql.connect(config);
         let servicios = await pool.request().query("SELECT * from Servicio");
         return servicios.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getPedidosServicio() {
+    try {
+        let pool = await sql.connect(config);
+        let pedidosServicios = await pool.request().query("SELECT * from PedidoServicio");
+        return pedidosServicios.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getPedidosProducto() {
+    try {
+        let pool = await sql.connect(config);
+        let pedidosProductos = await pool.request().query("SELECT * from PedidoProducto");
+        return pedidosProductos.recordsets;
     }
     catch (error) {
         console.log(error);
@@ -148,6 +194,18 @@ async function getProductByID(id) {
         let pool = await sql.connect(config);
         let prod = await pool.request().input('input_parameter',sql.Int,id).query("SELECT * from Producto where ProductoID = @input_parameter");
         return prod.recordsets;
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+async function getDescripcionByVentaID(id) {
+    try {
+        console.log(id);
+        let pool = await sql.connect(config);
+        let descr = await pool.request().input('input_parameter',sql.Int,id).query("select P.Nombre as 'Producto', V.Cantidad from Producto P inner join VentaProducto V on P.ProductoID = V.ProductoID where V.VentaID = @input_parameter");
+        return descr.recordsets;
     }
     catch (error) {
         console.log(error);
@@ -286,5 +344,10 @@ module.exports = {
     getCategoriaServByID:getCategoriaServByID,
     RegistrarPedidoServicio:RegistrarPedidoServicio,
     getFotos:getFotos,
-    getCategoriaFotoByID:getCategoriaFotoByID
+    getCategoriaFotoByID:getCategoriaFotoByID,
+    getPedidosServicio:getPedidosServicio,
+    getPedidosProducto:getPedidosProducto,
+    getClienteByID:getClienteByID,
+    getVentaByID:getVentaByID,
+    getDescripcionByVentaID:getDescripcionByVentaID
 }
