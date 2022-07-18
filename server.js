@@ -58,6 +58,17 @@ app.get("/MenuMarketing", function(req, res){
     res.sendFile(path.resolve(__dirname + "/Pantallas/P_Menu_Marketing/P_Menu_Marketing.html"));
 });
 
+app.get("/Modificar", function(req, res){
+    
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Modificar/P_Modificar.html"));
+});
+
+app.get("/ModificarServicios", function(req, res){
+    
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Modificar_Servicios/P_Modificar_Servicios.html"));
+});
+
+
 app.get("/InicioSesion", function(req, res){
     
     dboperations.getCliente().then(result => {
@@ -131,6 +142,11 @@ app.get("/VerPedidos", function(req, res){
     
 
     res.sendFile(path.resolve(__dirname + "/Pantallas/P_Ver_Pedidos/P_Ver_Pedidos.html"));
+});
+
+app.get("/ManejarInventario", function(req, res){
+
+    res.sendFile(path.resolve(__dirname + "/Pantallas/P_Manejar_Inventario/P_Manejar_Inventario.html"));
 });
 
 
@@ -346,6 +362,39 @@ app.post("/RegistrarVentaProducto",  function(req, res){
 
 });
 
+app.post("/ActualizarInventario",  function(req, res){
+
+    var obj = req.body;
+    var objJson = JSON.parse(obj);
+    dboperations.UpdateInventory(objJson).then(result => {
+        //console.log("resultado de sp = " + result.resultado);
+        res.json(result);
+     })
+
+});
+
+app.post("/ActualizarProducto",  function(req, res){
+
+    var obj = req.body;
+    var objJson = JSON.parse(obj);
+    dboperations.UpdateProduct(objJson).then(result => {
+        //console.log("resultado de sp = " + result.resultado);
+        res.json(result);
+     })
+
+});
+
+app.post("/ActualizarServicio",  function(req, res){
+
+    var obj = req.body;
+    var objJson = JSON.parse(obj);
+    dboperations.UpdateServicio(objJson).then(result => {
+        //console.log("resultado de sp = " + result.resultado);
+        res.json(result);
+     })
+
+});
+
 //rutas estaticas
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Inicio")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Registro")));
@@ -363,6 +412,12 @@ app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Total_A_Pagar_Serv
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Confirmar_Pedido_Serv")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Galeria")));
 app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Ver_Pedidos")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Manejar_Inventario")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Modificar")));
+app.use(express.static(path.resolve(__dirname + "/Pantallas/P_Modificar_Servicios")));
+
+
+
 
 
 

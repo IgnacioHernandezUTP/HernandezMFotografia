@@ -236,6 +236,60 @@ async function getCuentaByUser(user) {
     }
 }
 
+async function UpdateInventory(obj) {
+    console.log("obj pasado a dboperations Cuenta = " + obj);
+    try {
+        let pool = await sql.connect(config);
+        let updInv = await pool.request()
+            .input('ProductoID', sql.Int, obj.ProductoID)
+            .input('inventario', sql.VarChar, obj.Inventario)
+            .output('resultado', sql.Int, 0)
+            .execute('ActualizarInventario');
+        return updInv.output;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+async function UpdateProduct(obj) {
+    console.log("obj pasado a dboperations Cuenta = " + obj);
+    try {
+        let pool = await sql.connect(config);
+        let updProd = await pool.request()
+            .input('ProductoID', sql.Int, obj.ProductoID)
+            .input('Nombre', sql.VarChar, obj.Nombre)
+            .input('Descripcion', sql.VarChar, obj.Descripcion)
+            .input('Precio', sql.VarChar, obj.Precio)
+            .output('resultado', sql.Int, 0)
+            .execute('ActualizarProducto');
+        return updProd.output;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+async function UpdateServicio(obj) {
+    console.log("obj pasado a dboperations Cuenta = " + obj);
+    try {
+        let pool = await sql.connect(config);
+        let updServ = await pool.request()
+            .input('ServicioID', sql.Int, obj.ServicioID)
+            .input('Nombre', sql.VarChar, obj.Nombre)
+            .input('Descripcion', sql.VarChar, obj.Descripcion)
+            .input('Precio', sql.VarChar, obj.Precio)
+            .output('resultado', sql.Int, 0)
+            .execute('ActualizarServicio');
+        return updServ.output;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+
+
 async function RegistrarCliente(obj) {
 
     try {
@@ -349,5 +403,8 @@ module.exports = {
     getPedidosProducto:getPedidosProducto,
     getClienteByID:getClienteByID,
     getVentaByID:getVentaByID,
-    getDescripcionByVentaID:getDescripcionByVentaID
+    getDescripcionByVentaID:getDescripcionByVentaID,
+    UpdateInventory:UpdateInventory,
+    UpdateProduct:UpdateProduct,
+    UpdateServicio:UpdateServicio
 }
