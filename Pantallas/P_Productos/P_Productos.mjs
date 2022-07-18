@@ -10,6 +10,7 @@ import { ObtenerProductoPorID } from '../../Controladores/C_Productos/C_Producto
 
 let grid = document.querySelector(".products");
 let filterInput = document.getElementById("filterInput");
+let counter = document.getElementById("counter");
 
 //fetch('./database/store.json')
   //  .then(res => res.json())
@@ -108,6 +109,8 @@ function addElement(appendIn, value){
     
         var total = 0;
 
+        localStorage.setItem('productos', JSON.stringify(venta));
+
         venta.forEach(function (prod) {
 
             var ventaProducto = new VentaProducto();
@@ -156,6 +159,12 @@ function addElement(appendIn, value){
              
             });
         });
+
+        const btnPagar = document.getElementById('btnPagar');
+        btnPagar.addEventListener('click', function handleClick(event){
+            event.stopImmediatePropagation();
+            RegistrarVenta(venta);
+        });
     })
     
     
@@ -165,13 +174,11 @@ function addElement(appendIn, value){
         prodById.then(function(result){
             venta.push(result[0]);
             
+            alert(result[0].Nombre + " Agregado a la Venta!");
 
-            let confirmAction = confirm(result[0].Nombre + " Agregado a la venta. Continuar a Pago?");
-            if (confirmAction) {
-                RegistrarVenta(venta);
-              } else {
-                //continua el flujo
-              }
+            counter.innerHTML = "Productos en Venta: " + venta.length;
+
+            
 
         });
        console.log(venta);
